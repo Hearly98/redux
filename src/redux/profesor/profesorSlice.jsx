@@ -20,6 +20,7 @@ const initialState = {
   isFormVisible: false, // Estado para controlar la visibilidad del formulario
   isLoading: false,
   error: null,
+  successMessage: '',
 };
 
 const profesorSlice = createSlice({
@@ -34,11 +35,14 @@ const profesorSlice = createSlice({
     builder
       .addCase(createProfesor.pending, (state) => {
         state.isLoading = true;
+        state.error = null;
+        state.successMessage = '';
       })
       .addCase(createProfesor.fulfilled, (state, action) => {
         state.isLoading = false;
         state.profesores.push(action.payload);
-        state.isFormVisible = false; // Opcional: Ocultar formulario al éxito
+        state.isFormVisible = false;
+        state.successMessage = 'Profesor creado con éxito!';
       })
       .addCase(createProfesor.rejected, (state, action) => {
         state.isLoading = false;

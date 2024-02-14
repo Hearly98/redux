@@ -2,11 +2,19 @@
 import './App.css'
 import './index.css'
 import { CrearProfesor } from './components/CrearProfesor';
-function App() {
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleFormVisibility } from './redux/profesor/profesorSlice';
+export function App() {
+  const dispatch = useDispatch();
+  const isFormVisible = useSelector((state) => state.profesor.isFormVisible);
   return (
     <>
-    <button className='p-2 bg-purple-600 text-white py-3' >Crear Profesor</button>
-    <CrearProfesor  />
+    <div className='p-4'>
+    <h1 className='text-3xl font-semibold text-blue-950'>Profesores</h1>
+    </div>
+    <button className='p-2 bg-purple-600 text-white ' onClick={() => dispatch(toggleFormVisibility())} >Crear Profesor</button>
+    {isFormVisible && <CrearProfesor />}
+
   </>
   )
 }
