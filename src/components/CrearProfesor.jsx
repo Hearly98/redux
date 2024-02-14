@@ -21,25 +21,52 @@ export const CrearProfesor = () => {
   };
 
   return (
-    <div className="border bg-slate-700">
-      <form onSubmit={handleSubmit}>
-        <label>Nombre</label>
-        <input value={nombre} onChange={(e) => setNombre(e.target.value)}/>
-        <label>Apellido</label>
-        <input value={apellido} onChange={(e) => setApellido(e.target.value)} />
-        <label>Usuario</label>
-        <input value={usuario} onChange={(e) => setUsuario(e.target.value)} />
-        <label>Contraseña</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <label>Email</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <label>Celular</label>
-        <input value={celular} onChange={(e) => setCelular(e.target.value)} />
-        <label>Materias</label>
-        <input value={materias} onChange={(e) => setMaterias(e.target.value)} />
-        <button type="submit">Guardar</button>
-        <button type="button" onClick={() => dispatch(toggleFormVisibility())}>Cancelar</button>
+    <>
+   
+    <div className="fixed top-0 right-0 z-40 w-80 min-h-screen overflow-y-auto bg-white border-l-4 bg-red transition-transform h-full">
+      <div className='bg-gradient-to-br from-blue-400 to-purple-500 py-2 px-3'>
+      <h3 className='text-lg font-bold text-blue-950'>Crear Profesor</h3>
+      </div>
+      <div className='grid grid-rows-[auto,auto] gap-4 h-full'> 
+      <form onSubmit={handleSubmit} className='grid gap-1 px-3 mt-3'>
+        <div className='grid'>
+        <label>Nombre *</label>
+        <input className='bg-cyan-50 border rounded px-3 border-gray-300' value={nombre} onChange={(e) => setNombre(e.target.value)}/>
+        </div>
+        <div className='grid'>
+        <label>Apellido *</label>
+        <input className='bg-cyan-50 border rounded px-3 border-gray-300' value={apellido} onChange={(e) => setApellido(e.target.value)} />
+        </div>
+        <div className='grid'>
+        <label>Usuario *</label>
+        <input className='bg-cyan-50 border rounded px-3 border-gray-300' value={usuario} onChange={(e) => setUsuario(e.target.value)} />
+        </div>
+        <div className='grid'>
+        <label >Contraseña *</label>
+        <input className='bg-cyan-50 border bord rounded px-3 border-gray-300' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <div className='grid'>
+        <label >Email</label>
+        <input className='bg-cyan-50 border rounded px-3 border-gray-300' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        </div>
+        <div className='grid'>
+        <label >Celular</label>
+        <input className='bg-cyan-50 border rounded px-3 border-gray-300' value={celular} onChange={(e) => setCelular(e.target.value)} />
+        </div>
+        <div className='grid'>
+        <label >Materias</label>
+        <input className='bg-cyan-50 border rounded px-3  border-gray-300' value={materias} onChange={(e) => setMaterias(e.target.value)} />
+        </div>
       </form>
+      
+      <div className='grid grid-cols-2 gap-4 p-3 bg-gray-100 mt-auto border border-gray-300'>
+      <button className='w-full px-4 py-2 text-white bg-purple-600 rounded' type="submit">Crear</button>
+      <button className="w-full px-4 py-2 text-purple-600 border border-purple-600 rounded" type="button" onClick={() => dispatch(toggleFormVisibility())}>Cancelar</button>
+      </div>
+      </div>
+     
     </div>
+     
+    </>
   );
 };
