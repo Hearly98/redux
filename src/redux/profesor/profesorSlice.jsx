@@ -1,8 +1,8 @@
-// features/profesorSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Acción asíncrona para crear un nuevo profesor
+
 export const createProfesor = createAsyncThunk(
   'profesor/createProfesor',
   async (profesorData, { rejectWithValue }) => {
@@ -17,7 +17,7 @@ export const createProfesor = createAsyncThunk(
 
 const initialState = {
   profesores: [],
-  isFormVisible: false, // Estado para controlar la visibilidad del formulario
+  materias:[],
   isLoading: false,
   error: null,
   successMessage: '',
@@ -26,11 +26,7 @@ const initialState = {
 const profesorSlice = createSlice({
   name: 'profesor',
   initialState,
-  reducers: {
-    toggleFormVisibility: (state) => {
-      state.isFormVisible = !state.isFormVisible;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createProfesor.pending, (state) => {
@@ -41,7 +37,6 @@ const profesorSlice = createSlice({
       .addCase(createProfesor.fulfilled, (state, action) => {
         state.isLoading = false;
         state.profesores.push(action.payload);
-        state.isFormVisible = false;
         state.successMessage = 'Profesor creado con éxito!';
       })
       .addCase(createProfesor.rejected, (state, action) => {
@@ -51,6 +46,5 @@ const profesorSlice = createSlice({
   },
 });
 
-export const {  toggleFormVisibility } = profesorSlice.actions;
 
 export default profesorSlice.reducer;

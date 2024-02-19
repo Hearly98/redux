@@ -1,23 +1,40 @@
 
-import './App.css'
-import './index.css'
-import { CrearProfesor } from './components/CrearProfesor';
-import { useSelector, useDispatch } from 'react-redux';
-import { toggleFormVisibility } from './redux/profesor/profesorSlice';
-import Sidebar from './components/Sidebar';
+import React, {useState} from 'react';
+import Sidebar from './components/Sidebar'
 import { OffCanvasForm } from './components/OffCanvasForm';
-export function App() {
-  const dispatch = useDispatch();
-  const isFormVisible = useSelector((state) => state.profesor.isFormVisible);
-  return (
-    <>
-    <div className='p-4'>
-    <h1 className='text-3xl font-semibold text-blue-950'>Profesores</h1>
-    </div>
-    <button className='p-2 bg-purple-600 text-white rounded' onClick={() => dispatch(toggleFormVisibility())} >Crear Profesor</button>
-    {isFormVisible && <OffCanvasForm />}
-  </>
-  )
-}
 
-export default App
+const App = () => {
+  const [showOffCanvasForm, setShowOffCanvasForm] = useState(false);
+  const [action, setAction] = useState('');
+
+  const handleCreateProfesor = () => {
+    setAction('crearProfesor');
+    setShowOffCanvasForm(true);
+  };
+  const handleUpdateProfesor = () => {
+    setAction('editarProfesor');
+    setShowOffCanvasForm(true);
+  };
+  const handleCreateAlumno = () => {
+    setAction('crearAlumno');
+    setShowOffCanvasForm(true);
+  };
+  const handleCloseForm = () => {
+    setShowOffCanvasForm(false);
+  }
+  return (
+      <div className='flex'>
+        <div>
+          <Sidebar />
+        </div>
+        <div className='flex-1'>
+        <h1>Profesores</h1>
+        <button className=' px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded transition duration-300 ease-in-out mx-4' onClick={() => handleCreateProfesor('crearProfesor')}>Crear Profesor</button>
+        <button className=' px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded transition duration-300 ease-in-out' onClick={() => handleCreateAlumno('crearAlumno')}>Crear Alumno</button>
+        {showOffCanvasForm  && (<OffCanvasForm action={action} handleCloseForm={handleCloseForm}/>)}
+      </div>
+        </div>
+    );
+  };
+
+export default App;

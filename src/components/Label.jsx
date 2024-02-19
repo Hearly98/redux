@@ -5,3 +5,4 @@ export const Label = ({htmlFor, children}) =>{
         </label>
     )
 }
+export default Label;
